@@ -1,25 +1,16 @@
-class FiguraGeometrica:
-    def __init__(self, alto, ancho):
-        self._alto = alto
-        self._ancho = ancho
-    def get_alto(self):
-        return self._alto
-    def set_alto(self, alto):
-        self._alto = alto
-    def get_ancho(self):
-        return self._ancho
-    def set_ancho(self, ancho):
-        self._ancho = ancho
-    def __str__(self):  # Corrección del nombre del método
-        return f'Alto: {self._alto}, Ancho: {self._ancho}'
+from figurageometrica import FiguraGeometrica
+from color import Color
 
-class Rectangulo(FiguraGeometrica):
-    def __init__(self, alto, ancho):
-        super().__init__(alto, ancho)
-    def area(self):
-        return self._alto * self._ancho
+class Rectangulo(FiguraGeometrica, Color):
+    def __init__(self, alto=0, ancho=0, color=None):
+        FiguraGeometrica.__init__(self, alto, ancho)
+        Color.__init__(self,color)
+
     def __str__(self):
-        return f'Rectángulo de alto {self._alto}, ancho {self._ancho}, área {self.area()}'
+        return f"Rectángulo -> {self.__dict__.__str__()}"
 
-rectangulo = Rectangulo(4, 6)
-print(rectangulo)
+if __name__ == "__main__":
+    r1 = Rectangulo(alto=5,ancho=3, color="Rojo")
+    print(r1)
+    print(f'Area: {r1.area()}')
+    print(f'Perimetro: {r1.perimetro()}')
